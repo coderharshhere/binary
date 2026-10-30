@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary & Decimal Conversion Tricks - By Harsh</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --highlight: #fef08a;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        h1 { margin: 0; font-size: 2.2rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px;}
+        h3 { color: #475569; margin-bottom: 10px; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary);
+        }
+        .card.green { border-left-color: var(--secondary); }
+        
+        /* Table Styling for Tricks */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        th { background-color: #f1f5f9; color: var(--primary); }
+        .highlight { background-color: var(--highlight); font-weight: 900; }
+        .step { background-color: #f0fdf4; font-weight: bold; color: #065f46; }
+        
+        /* Interactive Tool Styling */
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .tool-box {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        input:focus { outline: none; border-color: var(--primary); }
+        button {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover { background: #1d4ed8; transform: translateY(-2px); }
+        .result {
+            margin-top: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--secondary);
+            min-height: 30px;
+        }
+        .note {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 600px) {
+            .tool-container { grid-template-columns: 1fr; }
+            table { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🚀 Binary & Decimal Conversion Tricks</h1>
+        <p>Master the fastest methods to convert numbers like a pro!</p>
+    </header>
+
+    <!-- DECIMAL TO BINARY -->
+    <h2>🔵 Decimal to Binary Tricks</h2>
+
+    <div class="card">
+        <h3>Trick 1: The "Powers of 2" Table Method (Fastest for Mental Math)</h3>
+        <p>Yeh sabse best trick hai. Pehle 2 ki powers yaad kar lein: <strong>128, 64, 32, 16, 8, 4, 2, 1</strong></p>
+        <p><strong>Example:</strong> Convert <strong>13</strong> to Binary.</p>
+        <table>
+            <tr>
+                <th>128</th><th>64</th><th>32</th><th>16</th><th class="highlight">8</th><th class="highlight">4</th><th>2</th><th class="highlight">1</th>
+            </tr>
+            <tr>
+                <td>0</td><td>0</td><td>0</td><td>0</td><td class="step">1</td><td class="step">1</td><td>0</td><td class="step">1</td>
+            </tr>
+        </table>
+        <p><strong>Kaise karein?</strong></p>
+        <ul>
+            <li>13 me se 8 fit hota hai? <strong>Haan</strong> (1 likho). Bacha: 13 - 8 = 5.</li>
+            <li>5 me se 4 fit hota hai? <strong>Haan</strong> (1 likho). Bacha: 5 - 4 = 1.</li>
+            <li>1 me se 2 fit hota hai? <strong>Nahi</strong> (0 likho).</li>
+            <li>1 me se 1 fit hota hai? <strong>Haan</strong> (1 likho). Bacha: 0.</li>
+        </ul>
+        <p><strong>Answer:</strong> <code>00001101</code></p>
+    </div>
+
+    <div class="card">
+        <h3>Trick 2: Division by 2 Method (Standard Method)</h3>
+        <p>Number ko 2 se divide karte jao aur <strong>Remainder (Bach)</strong> ko neeche se upar padho.</p>
+        <p><strong>Example:</strong> Convert <strong>13</strong></p>
+        <table>
+            <tr><th>Division</th><th>Quotient</th><th>Remainder (Read Bottom to Top ⬆️)</th></tr>
+            <tr><td>13 ÷ 2</td><td>6</td><td class="step">1</td></tr>
+            <tr><td>6 ÷ 2</td><td>3</td><td class="step">0</td></tr>
+            <tr><td>3 ÷ 2</td><td>1</td><td class="step">1</td></tr>
+            <tr><td>1 ÷ 2</td><td>0</td><td class="step">1</td></tr>
+        </table>
+        <p><strong>Answer:</strong> <code>1101</code></p>
+    </div>
+
+    <!-- BINARY TO DECIMAL -->
+    <h2>🟢 Binary to Decimal Tricks</h2>
+
+    <div class="card green">
+        <h3>Trick 1: Positional Weight Method (Standard)</h3>
+        <p>Har bit ko uski position ki power of 2 se multiply karo (Right se Left: $2^0, 2^1, 2^2...$)</p>
+        <p><strong>Example:</strong> Convert <code>1101</code></p>
+        <table>
+            <tr><th>Binary</th><th>1</th><th>1</th><th>0</th><th>1</th></tr>
+            <tr><th>Weight ($2^n$)</th><td>$2^3$ (8)</td><td>$2^2$ (4)</td><td>$2^1$ (2)</td><td>$2^0$ (1)</td></tr>
+            <tr><th>Multiply</th><td class="step">1 × 8 = 8</td><td class="step">1 × 4 = 4</td><td class="step">0 × 2 = 0</td><td class="step">1 × 1 = 1</td></tr>
+        </table>
+        <p><strong>Total:</strong> 8 + 4 + 0 + 1 = <strong>13</strong></p>
+    </div>
+
+    <div class="card green">
+        <h3>Trick 2: The "Doubling" Method (Super Fast Mental Trick 🧠)</h3>
+        <p>Isme kisi power ya table ki zarurat nahi. Left se Right jao, pichle answer ko 2 se multiply karo aur current bit add karo.</p>
+        <p><strong>Example:</strong> Convert <code>1101</code></p>
+        <ol>
+            <li>Start with <strong>0</strong></li>
+            <li>0 × 2 + <strong>1</strong> (first bit) = <strong>1</strong></li>
+            <li>1 × 2 + <strong>1</strong> (second bit) = <strong>3</strong></li>
+            <li>3 × 2 + <strong>0</strong> (third bit) = <strong>6</strong></li>
+            <li>6 × 2 + <strong>1</strong> (fourth bit) = <strong>13</strong></li>
+        </ol>
+        <div class="note">💡 <strong>Pro Tip:</strong> Yeh trick bade binary numbers (jaise 10110101) ko dimaag me solve karne ke liye sabse best hai!</div>
+    </div>
+
+    <!-- INTERACTIVE TOOL -->
+    <h2>🛠️ Live Practice Tool</h2>
+    <div class="card">
+        <p>Tricks seekh li? Ab yahan practice karo aur answer check karo!</p>
+        <div class="tool-container">
+            <div class="tool-box">
+                <h3>Decimal ➡️ Binary</h3>
+                <input type="number" id="decInput" placeholder="Enter Decimal (e.g., 13)">
+                <br>
+                <button onclick="decToBin()">Convert</button>
+                <div class="result" id="decResult"></div>
+            </div>
+            <div class="tool-box">
+                <h3>Binary ➡️ Decimal</h3>
+                <input type="text" id="binInput" placeholder="Enter Binary (e.g., 1101)">
+                <br>
+                <button onclick="binToDec()">Convert</button>
+                <div class="result" id="binResult"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function decToBin() {
+        let dec = document.getElementById('decInput').value;
+        if (dec === "") {
+            document.getElementById('decResult').innerText = "Please enter a number!";
+            return;
+        }
+        let bin = parseInt(dec, 10).toString(2);
+        document.getElementById('decResult').innerText = "Binary: " + bin;
+    }
+
+    function binToDec() {
+        let bin = document.getElementById('binInput').value;
+        if (bin === "") {
+            document.getElementById('binResult').innerText = "Please enter a binary number!";
+            return;
+        }
+        // Check if valid binary
+        if (!/^[01]+$/.test(bin)) {
+            document.getElementById('binResult').innerText = "Invalid Binary!";
+            return;
+        }
+        let dec = parseInt(bin, 2);
+        document.getElementById('binResult').innerText = "Decimal: " + dec;
+    }
+</script>
+
+</body>
+</html>
